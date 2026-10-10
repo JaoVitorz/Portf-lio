@@ -13,15 +13,11 @@ type Tool = {
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function ToolCarousel({ items }: { items: readonly Tool[] }) {
-  const rootRef = useRef<HTMLElement>(null);
   const cursorRef = useRef(0);
   const movingRef = useRef(false);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const [mobile, setMobile] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
-  const [visible, setVisible] = useState(false);
-  const [hovered, setHovered] = useState(false);
-  const [focused, setFocused] = useState(false);
   const [paused, setPaused] = useState(false);
   const [cursor, setCursor] = useState(0);
   const [shown, setShown] = useState(() => items.slice(0, 3).map((_, index) => index));
@@ -40,14 +36,6 @@ export function ToolCarousel({ items }: { items: readonly Tool[] }) {
       width.removeEventListener("change", updateWidth);
       motionPreference.removeEventListener("change", updateMotion);
     };
-  }, []);
-
-  useEffect(() => {
-    const node = rootRef.current;
-    if (!node) return;
-    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.2 });
-    observer.observe(node);
-    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -87,10 +75,10 @@ export function ToolCarousel({ items }: { items: readonly Tool[] }) {
   }, [count, items.length, reducedMotion]);
 
   useEffect(() => {
-    if (!visible || paused || hovered || focused || reducedMotion || items.length <= count) return;
-    const timer = setInterval(() => move(1), 4800);
+    if (paused || items.length <= count) return;
+    const timer = setInterval(() => move(1), 3000);
     return () => clearInterval(timer);
-  }, [visible, paused, hovered, focused, reducedMotion, items.length, count, move]);
+  }, [paused, items.length, count, move]);
 
   if (!items.length) return null;
 
@@ -101,16 +89,10 @@ export function ToolCarousel({ items }: { items: readonly Tool[] }) {
 
   return (
     <section
-      ref={rootRef}
       className="tool-carousel"
       aria-label="Ferramentas em destaque"
       aria-roledescription="carrossel"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onFocusCapture={() => setFocused(true)}
-      onBlurCapture={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false);
-      }}
+      onFocusCapture={() => setPaused(true)}
       onKeyDown={(event) => {
         if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
           event.preventDefault();
@@ -167,7 +149,7 @@ export function ToolCarousel({ items }: { items: readonly Tool[] }) {
           <button type="button" aria-label="Ferramentas anteriores" onClick={() => { setPaused(true); move(-1); }}>←</button>
           <button type="button" className="is-primary" aria-label="Próximas ferramentas" onClick={() => { setPaused(true); move(1); }}>→</button>
         </div>
-        {!reducedMotion && <button type="button" className="tool-carousel-play" aria-label={paused ? "Retomar rotação automática" : "Pausar rotação automática"} onClick={() => setPaused((value) => !value)}>{paused ? "Reproduzir" : "Pausar"}</button>}
+        <button type="button" className="tool-carousel-play" aria-label={paused ? "Retomar rotação automática" : "Pausar rotação automática"} onClick={() => setPaused((value) => !value)}>{paused ? "Reproduzir" : "Pausar"}</button>
       </div>
     </section>
   );
