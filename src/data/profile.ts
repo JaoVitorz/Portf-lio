@@ -83,13 +83,62 @@ export const profile = {
       ],
     },
   ],
-  featuredTools: [
-    { name: "Jest", group: "Testes", description: "Automação e confiança no código", icon: "/brand-icons/jest.svg" },
-    { name: "React", group: "Interfaces", description: "Componentes e experiências web", icon: "/brand-icons/react.svg" },
-    { name: "Next.js", group: "Aplicações web", description: "Produtos do front ao deploy", icon: "/brand-icons/nextdotjs.svg" },
-    { name: "TypeScript", group: "Tipagem", description: "Código mais claro e sustentável", icon: "/brand-icons/typescript.svg" },
-    { name: "Postman", group: "APIs", description: "Exploração e validação de endpoints", icon: "/brand-icons/postman.svg" },
-    { name: "Node.js", group: "Back-end", description: "Serviços e integrações em JavaScript", icon: "/brand-icons/nodedotjs.svg" },
+  skillGroups: [
+    {
+      title: "Testes / QA",
+      description: "Qualidade em cada etapa, da validação manual à automação.",
+      accent: "#C21325",
+      tools: [
+        { name: "Jest", icon: "/brand-icons/jest.svg" },
+        { name: "Testing Library", icon: "/brand-icons/testinglibrary.svg" },
+        { name: "Postman", icon: "/brand-icons/postman.svg" },
+        { name: "JIRA", icon: "/brand-icons/jira.svg" },
+      ],
+    },
+    {
+      title: "Front-end",
+      description: "Interfaces responsivas com atenção à experiência.",
+      accent: "#61DAFB",
+      tools: [
+        { name: "React", icon: "/brand-icons/react.svg" },
+        { name: "Next.js", icon: "/brand-icons/nextdotjs.svg", darkLogo: true },
+        { name: "TypeScript", icon: "/brand-icons/typescript.svg" },
+        { name: "Tailwind CSS", icon: "/brand-icons/tailwindcss.svg" },
+      ],
+    },
+    {
+      title: "Back-end",
+      description: "APIs e serviços com atenção à estrutura e à segurança.",
+      accent: "#5FA04E",
+      tools: [
+        { name: "Node.js", icon: "/brand-icons/nodedotjs.svg" },
+        { name: "Express", icon: "/brand-icons/express.svg", darkLogo: true },
+        { name: "MongoDB", icon: "/brand-icons/mongodb.svg" },
+        { name: "Swagger", icon: "/brand-icons/swagger.svg" },
+      ],
+    },
+    {
+      title: "DevOps",
+      description: "Entrega, integração e acompanhamento dos sistemas.",
+      accent: "#2496ED",
+      tools: [
+        { name: "Docker", icon: "/brand-icons/docker.svg" },
+        { name: "GitHub Actions", icon: "/brand-icons/githubactions.svg" },
+        { name: "Vercel", icon: "/brand-icons/vercel.svg", darkLogo: true },
+        { name: "Render", icon: "/brand-icons/render.svg", darkLogo: true },
+      ],
+    },
+    {
+      title: "Outros",
+      description: "Ferramentas que ampliam minha prática em produto e desenvolvimento.",
+      accent: "#8A8A8A",
+      tools: [
+        { name: "Python", icon: "/brand-icons/python.svg" },
+        { name: "Git", icon: "/brand-icons/git.svg" },
+        { name: "Storybook", icon: "/brand-icons/storybook.svg" },
+        { name: "Expo", icon: "/brand-icons/expo.svg", darkLogo: true },
+      ],
+    },
   ],
   featured: {
     eyebrow: "Projeto em destaque / Estudo de caso",

@@ -1,156 +1,130 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 
-type Tool = {
-  name: string;
-  group: string;
+type Tool = { name: string; icon: string; darkLogo?: boolean };
+type SkillGroup = {
+  title: string;
   description: string;
-  icon: string;
+  accent: string;
+  tools: readonly Tool[];
 };
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-export function ToolCarousel({ items }: { items: readonly Tool[] }) {
-  const cursorRef = useRef(0);
-  const movingRef = useRef(false);
-  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
-  const [mobile, setMobile] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
+export function ToolCarousel({ groups, name }: { groups: readonly SkillGroup[]; name: string }) {
+  const [active, setActive] = useState(Math.min(1, groups.length - 1));
   const [paused, setPaused] = useState(false);
-  const [cursor, setCursor] = useState(0);
-  const [shown, setShown] = useState(() => items.slice(0, 3).map((_, index) => index));
-  const count = Math.min(mobile ? 1 : 3, items.length);
+  const [manual, setManual] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
-    const width = window.matchMedia("(max-width: 720px)");
-    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const updateWidth = () => setMobile(width.matches);
-    const updateMotion = () => setReducedMotion(motionPreference.matches);
-    updateWidth();
-    updateMotion();
-    width.addEventListener("change", updateWidth);
-    motionPreference.addEventListener("change", updateMotion);
-    return () => {
-      width.removeEventListener("change", updateWidth);
-      motionPreference.removeEventListener("change", updateMotion);
-    };
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReducedMotion(preference.matches);
+    update();
+    preference.addEventListener("change", update);
+    return () => preference.removeEventListener("change", update);
   }, []);
 
   useEffect(() => {
-    timersRef.current.forEach(clearTimeout);
-    timersRef.current = [];
-    movingRef.current = false;
-    const aligned = Math.floor(cursorRef.current / Math.max(1, count)) * Math.max(1, count);
-    cursorRef.current = aligned;
-    setCursor(aligned);
-    setShown(Array.from({ length: count }, (_, index) => (aligned + index) % items.length));
-    return () => {
-      timersRef.current.forEach(clearTimeout);
-      timersRef.current = [];
-    };
-  }, [count, items.length]);
-
-  const move = useCallback((direction: number) => {
-    if (movingRef.current || items.length <= count || count === 0) return;
-    movingRef.current = true;
-    const next = (cursorRef.current + direction * count + items.length) % items.length;
-    cursorRef.current = next;
-    setCursor(next);
-
-    if (reducedMotion) {
-      setShown(Array.from({ length: count }, (_, index) => (next + index) % items.length));
-      movingRef.current = false;
-      return;
-    }
-
-    Array.from({ length: count }, (_, slot) => {
-      const timer = setTimeout(() => {
-        setShown((current) => current.map((value, index) => index === slot ? (next + slot) % items.length : value));
-      }, slot * 180);
-      timersRef.current.push(timer);
-    });
-    timersRef.current.push(setTimeout(() => { movingRef.current = false; }, (count - 1) * 180 + 650));
-  }, [count, items.length, reducedMotion]);
-
-  useEffect(() => {
-    if (paused || items.length <= count) return;
-    const timer = setInterval(() => move(1), 3000);
+    if (paused || groups.length < 2) return;
+    const timer = setInterval(() => {
+      setManual(false);
+      setActive((index) => (index + 1) % groups.length);
+    }, 5200);
     return () => clearInterval(timer);
-  }, [paused, items.length, count, move]);
+  }, [groups.length, paused]);
 
-  if (!items.length) return null;
+  if (!groups.length) return null;
 
-  const page = Math.floor(cursor / count) + 1;
-  const pages = Math.ceil(items.length / count);
-  const begin = String(cursor + 1).padStart(2, "0");
-  const end = String(Math.min(cursor + count, items.length)).padStart(2, "0");
+  const group = groups[active];
+  const select = (index: number) => {
+    setManual(true);
+    setActive((index + groups.length) % groups.length);
+  };
 
   return (
-    <section
+    <div
       className="tool-carousel"
-      aria-label="Ferramentas em destaque"
+      role="region"
+      aria-label="Áreas de atuação"
       aria-roledescription="carrossel"
-      onFocusCapture={() => setPaused(true)}
+      tabIndex={0}
+      style={{ "--group-accent": group.accent } as CSSProperties}
       onKeyDown={(event) => {
-        if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+        if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
           event.preventDefault();
-          setPaused(true);
-          move(event.key === "ArrowRight" ? 1 : -1);
+          select(active + (event.key === "ArrowRight" ? 1 : -1));
         }
       }}
     >
-      <div className="tool-carousel-heading">
-        <div>
-          <span className="mono-label">FERRAMENTAS EM DESTAQUE / 01—{String(items.length).padStart(2, "0")}</span>
-          <h3>O que uso para <span>construir e testar.</span></h3>
-        </div>
-        <p>Uma seleção das ferramentas que acompanham meu trabalho, da interface à qualidade do software.</p>
+      <div className="tool-carousel-top">
+        <span>{name.split(" ").slice(0, 2).join(" ").toUpperCase()} <i>/</i> PORTFÓLIO</span>
+        <span>FERRAMENTAS &amp; PRÁTICAS</span>
       </div>
 
-      <div className="tool-carousel-slots" aria-live={paused ? "polite" : "off"}>
-        {Array.from({ length: count }, (_, slot) => {
-          const item = items[shown[slot] ?? slot];
-          return (
-            <div className="tool-carousel-slot" key={slot}>
-              <AnimatePresence mode="wait" initial={false}>
+      <div className="tool-carousel-scene" aria-live={manual ? "polite" : "off"} aria-atomic="true">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={group.title}
+            initial={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -12 }}
+            transition={{ duration: reducedMotion ? 0.14 : 0.42, ease: EASE }}
+          >
+            <div className="tool-carousel-intro">
+              <span className="mono-label">ÁREAS DE ATUAÇÃO</span>
+              <div className="tool-carousel-title-row">
+                <div>
+                  <h2 id="skills-title">{group.title}</h2>
+                  <p>{group.description}</p>
+                </div>
+                <span className="tool-carousel-counter">{String(active + 1).padStart(2, "0")} / {String(groups.length).padStart(2, "0")}</span>
+              </div>
+            </div>
+
+            <div className="tool-carousel-cards">
+              {group.tools.map((tool, index) => (
                 <motion.article
-                  key={item.name}
+                  key={tool.name}
                   className="tool-carousel-card"
-                  initial={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 12, filter: "blur(5px)" }}
-                  animate={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
-                  exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -10, filter: "blur(4px)" }}
-                  transition={{ duration: reducedMotion ? 0.14 : 0.35, ease: EASE }}
+                  initial={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: reducedMotion ? 0.14 : 0.42, delay: reducedMotion ? 0 : index * 0.07, ease: EASE }}
                   whileHover={reducedMotion ? undefined : { y: -2 }}
                 >
-                  <div className="tool-carousel-card-top">
-                    <span>{String((shown[slot] ?? slot) + 1).padStart(2, "0")} / {item.group}</span>
-                    <span aria-hidden="true">↗</span>
-                  </div>
-                  <div className="tool-carousel-icon">
-                    {/* Brand SVGs keep their original colors. */}
+                  <div className={`tool-carousel-icon${tool.darkLogo ? " is-dark-logo" : ""}`}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}${item.icon}`} alt="" width="42" height="42" className={item.name === "Next.js" ? "tool-carousel-logo-next" : undefined} />
+                    <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}${tool.icon}`} alt="" width="39" height="39" loading="lazy" />
                   </div>
-                  <h4>{item.name}</h4>
-                  <p>{item.description}</p>
+                  <h3>{tool.name}</h3>
+                  <span className="tool-carousel-card-label">TECNOLOGIA</span>
                 </motion.article>
-              </AnimatePresence>
+              ))}
             </div>
-          );
-        })}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
-      <div className="tool-carousel-controls">
-        <span className="tool-carousel-counter">{begin}{count > 1 ? `–${end}` : ""} / {String(items.length).padStart(2, "0")}</span>
-        <div className="tool-carousel-progress" aria-hidden="true"><span style={{ width: `${(page / pages) * 100}%` }} /></div>
-        <div className="tool-carousel-buttons">
-          <button type="button" aria-label="Ferramentas anteriores" onClick={() => { setPaused(true); move(-1); }}>←</button>
-          <button type="button" className="is-primary" aria-label="Próximas ferramentas" onClick={() => { setPaused(true); move(1); }}>→</button>
+      <div className="tool-carousel-bottom">
+        <div className="tool-carousel-bottom-label">
+          <span>CINCO GRUPOS <i>/</i> UM FLUXO</span>
+          <button type="button" onClick={() => setPaused((value) => !value)} aria-label={paused ? "Retomar transição automática" : "Pausar transição automática"}>{paused ? "REPRODUZIR" : "PAUSAR"}</button>
         </div>
-        <button type="button" className="tool-carousel-play" aria-label={paused ? "Retomar rotação automática" : "Pausar rotação automática"} onClick={() => setPaused((value) => !value)}>{paused ? "Reproduzir" : "Pausar"}</button>
+        <div className="tool-carousel-pagination" aria-label="Selecionar área de atuação">
+          {groups.map((item, index) => (
+            <button
+              type="button"
+              key={item.title}
+              className={index === active ? "is-active" : ""}
+              aria-label={`${item.title}, grupo ${index + 1} de ${groups.length}`}
+              aria-current={index === active ? "true" : undefined}
+              onClick={() => select(index)}
+            />
+          ))}
+        </div>
       </div>
-    </section>
+    </div>
   );
 }

@@ -67,18 +67,19 @@ export default function Home() {
       </section>
 
       <section className="section section-skills" id="skills" aria-labelledby="skills-title">
-        <div className="container">
-          <Reveal><SectionHeading number="02" eyebrow="FERRAMENTAS & PRÁTICAS" title="Onde atuo." description="Tecnologias e métodos que uso entre testes, produto e desenvolvimento." id="skills-title" /></Reveal>
-          <Reveal><ToolCarousel items={profile.featuredTools} /></Reveal>
-          <div className="skills-list-heading"><span className="mono-label">TODAS AS COMPETÊNCIAS</span><span>Testes, desenvolvimento e entrega</span></div>
-          <div className="skills-grid">
-            {profile.skills.map((skill, index) => (
-              <Reveal key={skill.group} className="skill-card" delay={index * 70}>
-                <div className="skill-top"><span className="skill-index">0{index + 1}</span><h3>{skill.group}</h3></div>
-                <div className="skill-list">{skill.items.map((item) => <span key={item}>{item}</span>)}</div>
-              </Reveal>
-            ))}
-          </div>
+        <ToolCarousel groups={profile.skillGroups} name={profile.name} />
+        <div className="container skills-details-wrap">
+          <details className="skills-details">
+            <summary>Todas as competências <span aria-hidden="true">+</span></summary>
+            <div className="skills-grid">
+              {profile.skills.map((skill, index) => (
+                <Reveal key={skill.group} className="skill-card" delay={index * 70}>
+                  <div className="skill-top"><span className="skill-index">0{index + 1}</span><h3>{skill.group}</h3></div>
+                  <div className="skill-list">{skill.items.map((item) => <span key={item}>{item}</span>)}</div>
+                </Reveal>
+              ))}
+            </div>
+          </details>
         </div>
       </section>
 
