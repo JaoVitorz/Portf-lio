@@ -25,9 +25,9 @@ O build gera a pasta `out/`, pronta para hospedagem estática. A rota do estudo 
 Todas as informações pessoais, textos de apresentação, projetos, skills, trajetória, links e conteúdo do estudo de caso ficam em [`src/data/profile.ts`](src/data/profile.ts). Edite esse arquivo e salve; o servidor de desenvolvimento atualiza a página automaticamente.
 
 - **Nome:** altere `lastName` no início do arquivo. `name` e o título do site são atualizados a partir dele.
-- **Links:** preencha `links.linkedIn`, `links.email`, `resume` e `petJoyful.webDemo`. Enquanto forem `null`, o site mostra `[PREENCHER]` e evita links quebrados.
+- **Links:** preencha `links.linkedIn`, `links.email` e `resume`. Enquanto forem `null`, o site mostra `[PREENCHER]` e evita links quebrados. `petJoyful.webDemo` já aponta para a versão publicada; atualize se a URL mudar.
 - **Foto e currículo:** a foto atual está em `public/foto-joao.png` e é definida por `photo`. Para trocá-la, coloque outro arquivo em `public/` e atualize esse caminho. Ela aparece em escala de cinza. Para o currículo, coloque o PDF em `public/` e informe um caminho como `"/curriculo.pdf"` em `resume`.
-- **Capturas de tela:** coloque imagens em `public/pet-joyful/` e preencha `petJoyful.screenshots[].src` com caminhos como `"/pet-joyful/tela-principal.webp"`. As molduras já estão prontas; sem arquivo, exibem o placeholder.
+- **Capturas de tela:** a Home e a tela de compatibilidade da versão web publicada foram capturadas em `public/projects/` e usadas no destaque e no estudo de caso. Para substituí-las, atualize os arquivos e os caminhos em `petJoyful.screenshots[].src`; o destaque usa os mesmos arquivos em `src/components/ProjectVisual.tsx`. A captura mobile ainda é pendente e, sem arquivo, mostra o placeholder.
 - **Empresa de QA:** substitua o texto `"[PREENCHER empresa de QA]"` em `timeline`.
 - **Áreas de atuação:** edite `skillGroups` para alterar os cinco grupos, descrições e quatro ferramentas exibidas por grupo. Os SVGs ficam em `public/brand-icons/`; mantenha o caminho `icon` correspondente. Os indicadores permitem escolher um grupo e a rotação pode ser pausada. Em `skills` permanece a lista completa, aberta pelo controle “Todas as competências”. Com movimento reduzido, a troca usa apenas fades curtos.
 - **Textura de fundo:** substitua `public/fabric-of-squares.png` para trocar o padrão. Ajuste `--texture-opacity` em `src/app/globals.css` para controlar a intensidade nos temas claro e escuro.
@@ -68,12 +68,9 @@ As instruções seguem a [documentação de exportação estática do Next.js](h
 | E-mail de contato | `links.email` |
 | Currículo PDF | Arquivo em `public/` + `resume` |
 | Nome da empresa do cargo QA Tester Jr | `timeline` |
-| URL da demo web do Pet Joyful | `petJoyful.webDemo` |
-| Screenshot da tela principal web | `petJoyful.screenshots[0].src` |
-| Screenshot do fluxo de adoção web | `petJoyful.screenshots[1].src` |
 | Screenshot da autenticação mobile | `petJoyful.screenshots[2].src` |
 | URL pública do portfólio | `NEXT_PUBLIC_SITE_URL` no ambiente de build |
 
-As visualizações gráficas dos cards são ilustrações em CSS, identificadas como tal no site. Elas não representam capturas reais dos projetos.
+O destaque do Pet Joyful e as duas primeiras imagens do estudo de caso usam capturas reais da versão web publicada. As visualizações dos outros projetos são ilustrações em CSS, identificadas como tal no site.
 
 Os ícones do carrossel vieram da coleção [Simple Icons](https://simpleicons.org/) e usam suas cores de marca; as marcas pertencem aos respectivos titulares.

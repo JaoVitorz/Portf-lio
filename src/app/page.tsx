@@ -90,11 +90,11 @@ export default function Home() {
             <div className="featured-content">
               <span className="mono-label">{profile.featured.eyebrow}</span>
               <div><span className="featured-number">01 / 03</span><h3>{profile.featured.title}<span className="title-period">.</span></h3><p>{profile.featured.description}</p></div>
-              <div className="featured-bottom"><div className="tag-list">{profile.featured.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><Link className="text-link" href="/projetos/pet-joyful/">Explorar estudo de caso <Arrow /></Link></div>
+              <div className="featured-bottom"><div className="tag-list">{profile.featured.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><div className="featured-links"><Link className="text-link" href="/projetos/pet-joyful/">Explorar estudo de caso <Arrow /></Link><a className="text-link" href={profile.petJoyful.webDemo} target="_blank" rel="noopener noreferrer">Abrir projeto publicado <Arrow /></a></div></div>
             </div>
             <ProjectVisual />
           </Reveal>
-          <p className="visual-disclaimer">Visualizações ilustrativas. Capturas reais aguardam os arquivos do projeto.</p>
+          <p className="visual-disclaimer">Imagens do Pet Joyful capturadas da versão web publicada. Os outros projetos usam ilustrações.</p>
           <div className="other-projects">
             {profile.projects.map((project, index) => (
               <Reveal key={project.title} className="project-card" delay={index * 80}>

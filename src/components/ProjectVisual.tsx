@@ -1,3 +1,5 @@
+import { BrowserMockup } from "./BrowserMockup";
+
 export function ProjectVisual({ variant = "pet" }: { variant?: "pet" | "study" | "mobile" }) {
   if (variant === "study") {
     return (
@@ -21,10 +23,25 @@ export function ProjectVisual({ variant = "pet" }: { variant?: "pet" | "study" |
     );
   }
   return (
-    <div className="project-visual project-visual-pet" aria-hidden="true">
-      <div className="visual-topline"><span>PROJETO INTEGRADOR</span><span>01 / 03</span></div>
-      <div className="pet-visual-main"><span className="pet-visual-small">UMA REDE PARA<br />CONEXÕES REAIS</span><span className="pet-visual-word">pet<br /><em>joyful</em><span className="visual-period">.</span></span></div>
-      <div className="visual-bottomline">WEB — API — MOBILE</div>
+    <div className="project-visual project-visual-pet">
+      <div className="visual-topline"><span>PROJETO INTEGRADOR</span><span>WEB / PUBLICADO</span></div>
+      <div className="pet-browser-layout">
+        <BrowserMockup
+          className="pet-browser-home"
+          label="01 / PÁGINA INICIAL"
+          src="/projects/pet-joyful-home.png"
+          alt="Página inicial do Pet Joyful, com busca, apresentação da rede de adoção e recursos como chat IA e compatibilidade"
+          url="pet-joyful-projeto-integrador-nextjs.onrender.com/Home"
+        />
+        <BrowserMockup
+          className="pet-browser-compat"
+          label="02 / COMPATIBILIDADE"
+          src="/projects/pet-joyful-compatibilidade.png"
+          alt="Tela real de compatibilidade adotante e pet com formulário de perfil"
+          url="pet-joyful / compatibilidade"
+        />
+      </div>
+      <div className="visual-bottomline">CAPTURAS REAIS DA VERSÃO WEB</div>
     </div>
   );
 }

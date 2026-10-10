@@ -307,11 +307,11 @@ export const profile = {
       },
       { label: "API em produção", href: "https://pet-joyful-backend.onrender.com" },
     ],
-    webDemo: null as string | null, // [PREENCHER demo web]
+    webDemo: "https://pet-joyful-projeto-integrador-nextjs.onrender.com/Home",
     screenshots: [
-      { label: "Web / tela principal", src: null as string | null },
-      { label: "Web / fluxo de adoção", src: null as string | null },
+      { label: "Web / tela principal", src: "/projects/pet-joyful-home.png" as string | null },
+      { label: "Web / compatibilidade", src: "/projects/pet-joyful-compatibilidade.png" as string | null },
       { label: "Mobile / autenticação", src: null as string | null },
-    ], // [PREENCHER screenshots]: caminhos de arquivos em /public
+    ], // [PREENCHER screenshot mobile]: caminho do arquivo em /public
   },
 } as const;
