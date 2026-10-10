@@ -10,6 +10,7 @@
   --text: #ededed;
   --accent: #ffffff;
   --button-text: #0a0a0a;
+  --texture-opacity: 0.08;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -24,6 +25,7 @@
     --text: #111111;
     --accent: #000000;
     --button-text: #ffffff;
+    --texture-opacity: 0.06;
   }
 }
 
@@ -37,6 +39,7 @@
   --text: #111111;
   --accent: #000000;
   --button-text: #ffffff;
+  --texture-opacity: 0.06;
 }
 
 :root[data-theme="dark"] {
@@ -49,6 +52,7 @@
   --text: #ededed;
   --accent: #ffffff;
   --button-text: #0a0a0a;
+  --texture-opacity: 0.08;
 }
 
 @theme inline {
@@ -68,12 +72,23 @@
 html { scroll-behavior: smooth; scroll-padding-top: 100px; }
 body {
   margin: 0;
+  isolation: isolate;
   background: var(--background);
   color: var(--text);
   font-family: var(--font-body), Arial, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   transition: background-color 300ms var(--ease), color 300ms var(--ease);
+}
+.site-texture {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-repeat: repeat;
+  background-size: 410px 410px;
+  opacity: var(--texture-opacity);
+  transition: opacity 300ms var(--ease);
 }
 ::selection { color: var(--button-text); background: var(--accent); }
 a { color: inherit; text-decoration: none; }

@@ -30,6 +30,7 @@ Todas as informações pessoais, textos de apresentação, projetos, skills, tra
 - **Capturas de tela:** coloque imagens em `public/pet-joyful/` e preencha `petJoyful.screenshots[].src` com caminhos como `"/pet-joyful/tela-principal.webp"`. As molduras já estão prontas; sem arquivo, exibem o placeholder.
 - **Empresa de QA:** substitua o texto `"[PREENCHER empresa de QA]"` em `timeline`.
 - **Carrossel de ferramentas:** edite `featuredTools` para alterar nomes, categorias e descrições. Os SVGs ficam em `public/brand-icons/`; mantenha o caminho `icon` correspondente. O carrossel mostra três itens por vez no desktop e um no celular. A rotação pode ser pausada; com movimento reduzido, a troca usa apenas fades curtos.
+- **Textura de fundo:** substitua `public/fabric-of-squares.png` para trocar o padrão. Ajuste `--texture-opacity` em `src/app/globals.css` para controlar a intensidade nos temas claro e escuro.
 
 O arquivo [`public/og-image.svg`](public/og-image.svg) contém apenas o primeiro nome como elemento gráfico. Se quiser usar o nome completo na imagem de compartilhamento, edite esse SVG também.
 

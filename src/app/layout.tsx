@@ -45,6 +45,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         />
       </head>
       <body>
+        <div className="site-texture" aria-hidden="true" style={{ backgroundImage: `url("${basePath}/fabric-of-squares.png")` }} />
         <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
         <SiteHeader />
         {children}
