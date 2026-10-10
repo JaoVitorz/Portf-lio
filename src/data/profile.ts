@@ -83,6 +83,14 @@ export const profile = {
       ],
     },
   ],
+  featuredTools: [
+    { name: "Jest", group: "Testes", description: "Automação e confiança no código", icon: "/brand-icons/jest.svg" },
+    { name: "React", group: "Interfaces", description: "Componentes e experiências web", icon: "/brand-icons/react.svg" },
+    { name: "Next.js", group: "Aplicações web", description: "Produtos do front ao deploy", icon: "/brand-icons/nextdotjs.svg" },
+    { name: "TypeScript", group: "Tipagem", description: "Código mais claro e sustentável", icon: "/brand-icons/typescript.svg" },
+    { name: "Postman", group: "APIs", description: "Exploração e validação de endpoints", icon: "/brand-icons/postman.svg" },
+    { name: "Node.js", group: "Back-end", description: "Serviços e integrações em JavaScript", icon: "/brand-icons/nodedotjs.svg" },
+  ],
   featured: {
     eyebrow: "Projeto em destaque / Estudo de caso",
     title: "Pet Joyful",

@@ -3,6 +3,7 @@ import { Placeholder } from "@/components/Placeholder";
 import { ProjectVisual } from "@/components/ProjectVisual";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
+import { ToolCarousel } from "@/components/ToolCarousel";
 import { profile } from "@/data/profile";
 
 function Arrow({ diagonal = false }: { diagonal?: boolean }) {
@@ -68,6 +69,8 @@ export default function Home() {
       <section className="section section-skills" id="skills" aria-labelledby="skills-title">
         <div className="container">
           <Reveal><SectionHeading number="02" eyebrow="FERRAMENTAS & PRÁTICAS" title="Onde atuo." description="Tecnologias e métodos que uso entre testes, produto e desenvolvimento." id="skills-title" /></Reveal>
+          <Reveal><ToolCarousel items={profile.featuredTools} /></Reveal>
+          <div className="skills-list-heading"><span className="mono-label">TODAS AS COMPETÊNCIAS</span><span>Testes, desenvolvimento e entrega</span></div>
           <div className="skills-grid">
             {profile.skills.map((skill, index) => (
               <Reveal key={skill.group} className="skill-card" delay={index * 70}>

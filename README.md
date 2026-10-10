@@ -29,6 +29,7 @@ Todas as informações pessoais, textos de apresentação, projetos, skills, tra
 - **Foto e currículo:** a foto atual está em `public/foto-joao.png` e é definida por `photo`. Para trocá-la, coloque outro arquivo em `public/` e atualize esse caminho. Ela aparece em escala de cinza. Para o currículo, coloque o PDF em `public/` e informe um caminho como `"/curriculo.pdf"` em `resume`.
 - **Capturas de tela:** coloque imagens em `public/pet-joyful/` e preencha `petJoyful.screenshots[].src` com caminhos como `"/pet-joyful/tela-principal.webp"`. As molduras já estão prontas; sem arquivo, exibem o placeholder.
 - **Empresa de QA:** substitua o texto `"[PREENCHER empresa de QA]"` em `timeline`.
+- **Carrossel de ferramentas:** edite `featuredTools` para alterar nomes, categorias e descrições. Os SVGs ficam em `public/brand-icons/`; mantenha o caminho `icon` correspondente. O carrossel mostra três itens por vez no desktop e um no celular. A rotação pode ser pausada e é desativada quando o sistema pede movimento reduzido.
 
 O arquivo [`public/og-image.svg`](public/og-image.svg) contém apenas o primeiro nome como elemento gráfico. Se quiser usar o nome completo na imagem de compartilhamento, edite esse SVG também.
 
@@ -73,3 +74,5 @@ As instruções seguem a [documentação de exportação estática do Next.js](h
 | URL pública do portfólio | `NEXT_PUBLIC_SITE_URL` no ambiente de build |
 
 As visualizações gráficas dos cards são ilustrações em CSS, identificadas como tal no site. Elas não representam capturas reais dos projetos.
+
+Os ícones do carrossel vieram da coleção [Simple Icons](https://simpleicons.org/) e usam suas cores de marca; as marcas pertencem aos respectivos titulares.
