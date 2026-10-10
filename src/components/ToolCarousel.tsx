@@ -15,6 +15,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function ToolCarousel({ groups, name }: { groups: readonly SkillGroup[]; name: string }) {
   const [active, setActive] = useState(Math.min(1, groups.length - 1));
+  const [direction, setDirection] = useState(1);
   const [paused, setPaused] = useState(false);
   const [manual, setManual] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
@@ -31,8 +32,9 @@ export function ToolCarousel({ groups, name }: { groups: readonly SkillGroup[]; 
     if (paused || groups.length < 2) return;
     const timer = setInterval(() => {
       setManual(false);
+      setDirection(1);
       setActive((index) => (index + 1) % groups.length);
-    }, 5200);
+    }, 4000);
     return () => clearInterval(timer);
   }, [groups.length, paused]);
 
@@ -41,7 +43,13 @@ export function ToolCarousel({ groups, name }: { groups: readonly SkillGroup[]; 
   const group = groups[active];
   const select = (index: number) => {
     setManual(true);
+    setDirection(index < active ? -1 : 1);
     setActive((index + groups.length) % groups.length);
+  };
+  const variants = {
+    enter: (travel: number) => ({ opacity: 0, x: reducedMotion ? 0 : travel * 20 }),
+    center: { opacity: 1, x: 0 },
+    exit: (travel: number) => ({ opacity: 0, x: reducedMotion ? 0 : travel * -20 }),
   };
 
   return (
@@ -51,7 +59,6 @@ export function ToolCarousel({ groups, name }: { groups: readonly SkillGroup[]; 
       aria-label="Áreas de atuação"
       aria-roledescription="carrossel"
       tabIndex={0}
-      style={{ "--group-accent": group.accent } as CSSProperties}
       onKeyDown={(event) => {
         if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
           event.preventDefault();
@@ -65,13 +72,16 @@ export function ToolCarousel({ groups, name }: { groups: readonly SkillGroup[]; 
       </div>
 
       <div className="tool-carousel-scene" aria-live={manual ? "polite" : "off"} aria-atomic="true">
-        <AnimatePresence mode="wait" initial={false}>
+        <AnimatePresence mode="sync" initial={false} custom={direction}>
           <motion.div
             key={group.title}
-            initial={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -12 }}
-            transition={{ duration: reducedMotion ? 0.14 : 0.42, ease: EASE }}
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: reducedMotion ? 0.14 : 0.34, ease: EASE }}
+            style={{ "--group-accent": group.accent } as CSSProperties}
           >
             <div className="tool-carousel-intro">
               <span className="mono-label">ÁREAS DE ATUAÇÃO</span>
@@ -85,14 +95,10 @@ export function ToolCarousel({ groups, name }: { groups: readonly SkillGroup[]; 
             </div>
 
             <div className="tool-carousel-cards">
-              {group.tools.map((tool, index) => (
-                <motion.article
+              {group.tools.map((tool) => (
+                <article
                   key={tool.name}
                   className="tool-carousel-card"
-                  initial={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: reducedMotion ? 0.14 : 0.42, delay: reducedMotion ? 0 : index * 0.07, ease: EASE }}
-                  whileHover={reducedMotion ? undefined : { y: -2 }}
                 >
                   <div className={`tool-carousel-icon${tool.darkLogo ? " is-dark-logo" : ""}`}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -100,7 +106,7 @@ export function ToolCarousel({ groups, name }: { groups: readonly SkillGroup[]; 
                   </div>
                   <h3>{tool.name}</h3>
                   <span className="tool-carousel-card-label">TECNOLOGIA</span>
-                </motion.article>
+                </article>
               ))}
             </div>
           </motion.div>

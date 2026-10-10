@@ -215,7 +215,8 @@ a.button-text:hover { color: var(--accent); }
 .tool-carousel-top { padding-bottom: 17px; border-bottom: 1px solid #303030; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; }
 .tool-carousel-top span:last-child { color: #8a8a8a; }
 .tool-carousel-top i, .tool-carousel-bottom-label i { padding-inline: 8px; color: #8a8a8a; font-style: normal; }
-.tool-carousel-scene { min-height: 537px; }
+.tool-carousel-scene { display: grid; min-height: 537px; }
+.tool-carousel-scene > * { grid-area: 1 / 1; min-width: 0; }
 .tool-carousel-intro { padding-top: 39px; }
 .tool-carousel-intro > .mono-label { font-size: 10px; color: #8a8a8a; }
 .tool-carousel-title-row { position: relative; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-top: 36px; padding-left: 30px; }
