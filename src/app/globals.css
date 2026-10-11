@@ -186,11 +186,13 @@ a.button-text:hover { color: var(--accent); }
 @keyframes hero-line { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 .hero-art { align-self: stretch; min-height: 450px; max-height: 590px; position: relative; border: 1px solid var(--border); background: var(--surface); overflow: hidden; animation-delay: 220ms; }
 .hero-art::before { content: ""; position: absolute; inset: 13px; border: 1px solid var(--border); pointer-events: none; }
+.hero-art.has-photo { border-radius: 16px; }
+.hero-art.has-photo::before { border-radius: 10px; }
 .portrait-placeholder { height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; }
 .portrait-monogram { font-family: var(--font-heading); font-size: clamp(180px, 21vw, 320px); font-weight: 600; letter-spacing: -0.17em; line-height: 1; color: var(--surface-raised); text-shadow: -1px -1px var(--border-hover), 1px -1px var(--border-hover), -1px 1px var(--border-hover), 1px 1px var(--border-hover); user-select: none; }
 .portrait-monogram span { color: var(--text-muted); text-shadow: none; }
 .portrait-caption { position: absolute; inset: auto 34px 46px; display: flex; justify-content: space-between; gap: 12px; color: var(--text-muted); }
-.hero-photo { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
+.hero-photo { display: block; width: 100%; height: 100%; object-fit: cover; }
 .hero-art-edge { position: absolute; inset: 34px 34px auto; display: flex; justify-content: space-between; color: var(--text-muted); }
 .hero-art.has-photo .hero-art-edge { inset: 25px 25px auto; padding: 8px 10px; background: var(--surface); color: var(--text); }
 .hero-foot { position: absolute; bottom: 35px; left: 0; display: flex; gap: 12px; color: var(--text-muted); }
