@@ -195,7 +195,7 @@ export const profile = {
       period: "Atual",
       type: "Experiência",
       title: "QA Tester Jr",
-      place: "[PREENCHER empresa de QA]",
+      place: "FIT - Instituto de Tecnologia · Sorocaba, SP",
       description: "Migração para testes de software por meio de processo interno.",
     },
     {
