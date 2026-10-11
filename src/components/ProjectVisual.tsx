@@ -43,11 +43,11 @@ export function ProjectVisual({ variant = "pet" }: { variant?: "pet" | "study" |
           url="pet-joyful-projeto-integrador-nextjs.onrender.com/Home"
         />
         <BrowserMockup
-          className="pet-browser-compat"
-          label="02 / COMPATIBILIDADE"
-          src="/projects/pet-joyful-compatibilidade.png"
-          alt="Tela real de compatibilidade adotante e pet com formulário de perfil"
-          url="pet-joyful / compatibilidade"
+          className="pet-browser-profile"
+          label="02 / PERFIL WEB"
+          src="/projects/pet-joyful-web-perfil.png"
+          alt="Perfil web do Pet Joyful com informações de Elton e publicações da comunidade"
+          url="pet-joyful / perfil"
         />
       </div>
       <div className="visual-bottomline">CAPTURAS REAIS DA VERSÃO WEB</div>

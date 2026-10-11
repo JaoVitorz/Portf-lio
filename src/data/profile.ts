@@ -310,7 +310,7 @@ export const profile = {
     webDemo: "https://pet-joyful-projeto-integrador-nextjs.onrender.com/Home",
     screenshots: [
       { label: "Web / tela principal", src: "/projects/pet-joyful-home.png", format: "web" },
-      { label: "Web / compatibilidade", src: "/projects/pet-joyful-compatibilidade.png", format: "web" },
+      { label: "Web / perfil", src: "/projects/pet-joyful-web-perfil.png", format: "web" },
       { label: "Mobile / início", src: "/projects/pet-joyful-mobile-home.png", format: "mobile" },
       { label: "Mobile / perfil", src: "/projects/pet-joyful-mobile-perfil.png", format: "mobile" },
     ],
