@@ -27,11 +27,11 @@ export default function Home() {
             ) : (
               <span className="button button-disabled" aria-disabled="true" title="Adicione o link no profile.ts">LinkedIn <span className="button-pending">[www.linkedin.com/in/joão-santos-jesus]</span></span>
             )}
-            {profile.resume ? (
+            {/* {profile.resume ? (
               <a className="button button-text" href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}${profile.resume}`} download>Baixar currículo <Arrow diagonal /></a>
             ) : (
               <span className="button button-text button-disabled" aria-disabled="true" title="Adicione o PDF no profile.ts">Baixar currículo <span className="button-pending">[PREENCHER PDF]</span></span>
-            )}
+            )} */}
           </div>
         </div>
         <div className={`hero-art hero-line${profile.photo ? " has-photo" : ""}`}>
