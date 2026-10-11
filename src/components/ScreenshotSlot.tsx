@@ -1,8 +1,8 @@
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH?.replace(/\/$/, "") || "";
 
-export function ScreenshotSlot({ label, src, index }: { label: string; src: string | null; index: number }) {
+export function ScreenshotSlot({ label, src, index, format = "web" }: { label: string; src: string | null; index: number; format?: "web" | "mobile" }) {
   return (
-    <figure className="screenshot-frame">
+    <figure className={`screenshot-frame${format === "mobile" ? " screenshot-frame-mobile" : ""}`}>
       <div className="screenshot-content">
         {src ? (
           // Caminhos locais são fornecidos pelo usuário em profile.ts.

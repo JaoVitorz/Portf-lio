@@ -15,10 +15,19 @@ export function ProjectVisual({ variant = "pet" }: { variant?: "pet" | "study" |
   }
   if (variant === "mobile") {
     return (
-      <div className="project-visual project-visual-mobile" aria-hidden="true">
+      <div className="project-visual project-visual-mobile">
         <div className="visual-topline"><span>PET JOYFUL / MOBILE</span><span>03</span></div>
-        <div className="phone"><div className="phone-notch" /><div className="phone-logo">PJ.</div><span className="phone-line" /><span className="phone-line short" /><div className="phone-button" /></div>
-        <div className="visual-bottomline">REACT NATIVE · EXPO</div>
+        <div className="mobile-screens">
+          <div className="mobile-screen">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/projects/pet-joyful-mobile-home.png`} alt="Tela inicial do aplicativo Pet Joyful Mobile, com recursos da comunidade e feed" loading="lazy" width="403" height="880" />
+          </div>
+          <div className="mobile-screen mobile-screen-profile">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/projects/pet-joyful-mobile-perfil.png`} alt="Tela de perfil do aplicativo Pet Joyful Mobile" loading="lazy" width="403" height="880" />
+          </div>
+        </div>
+        <div className="visual-bottomline">CAPTURAS REAIS · REACT NATIVE / EXPO</div>
       </div>
     );
   }

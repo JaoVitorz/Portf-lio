@@ -94,7 +94,7 @@ export default function Home() {
             </div>
             <ProjectVisual />
           </Reveal>
-          <p className="visual-disclaimer">Imagens do Pet Joyful capturadas da versão web publicada. Os outros projetos usam ilustrações.</p>
+          <p className="visual-disclaimer">Capturas reais do Pet Joyful Web e Mobile. O Study Organizer usa uma ilustração.</p>
           <div className="other-projects">
             {profile.projects.map((project, index) => (
               <Reveal key={project.title} className="project-card" delay={index * 80}>

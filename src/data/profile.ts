@@ -309,9 +309,10 @@ export const profile = {
     ],
     webDemo: "https://pet-joyful-projeto-integrador-nextjs.onrender.com/Home",
     screenshots: [
-      { label: "Web / tela principal", src: "/projects/pet-joyful-home.png" as string | null },
-      { label: "Web / compatibilidade", src: "/projects/pet-joyful-compatibilidade.png" as string | null },
-      { label: "Mobile / autenticação", src: null as string | null },
-    ], // [PREENCHER screenshot mobile]: caminho do arquivo em /public
+      { label: "Web / tela principal", src: "/projects/pet-joyful-home.png", format: "web" },
+      { label: "Web / compatibilidade", src: "/projects/pet-joyful-compatibilidade.png", format: "web" },
+      { label: "Mobile / início", src: "/projects/pet-joyful-mobile-home.png", format: "mobile" },
+      { label: "Mobile / perfil", src: "/projects/pet-joyful-mobile-perfil.png", format: "mobile" },
+    ],
   },
 } as const;
