@@ -12,20 +12,30 @@ export const profile = {
   role: "QA Tester Jr",
   location: "Votorantim, SP, Brasil",
   positioning:
-    "QA em crescimento com base sólida de desenvolvimento: testo, automatizo e também construo software.",
+    "Atuo em testes de software e automação. Minha formação em desenvolvimento me ajuda a compreender interfaces, APIs e o funcionamento do produto como um todo.",
   summary:
-    "Entendo o produto dos dois lados: desenvolvimento e qualidade.",
+    "Sou QA Tester Jr e estudante de Desenvolvimento de Software Multiplataforma. Minha trajetória reúne operação industrial, testes de software e desenvolvimento de aplicações.",
   photo: "/foto-terno.png" as string | null, // Caminho da foto em /public
   resume: null as string | null, // [PREENCHER currículo PDF]: caminho em /public
   links: {
     github: "https://github.com/JaoVitorz",
     dockerHub: "https://hub.docker.com/u/joaovitorjesus",
-    linkedIn: null as string | null, // [PREENCHER LinkedIn]
+    linkedIn: "https://www.linkedin.com/in/jo%C3%A3o-santos-jesus/" as string | null,
     email: null as string | null, // [PREENCHER e-mail]
   },
   about: [
-    "Minha trajetória começou como Operador I na Flextronics, em Sorocaba (SP). Migrei para testes de software por meio de um processo interno e hoje atuo como QA Tester Jr.",
-    "Curso Desenvolvimento de Software Multiplataforma na Fatec Votorantim. Sigo aprofundando testes, automação e desenvolvimento full stack para contribuir com produtos mais confiáveis e bem construídos.",
+    {
+      title: "Quem sou",
+      text: "Iniciei minha carreira como Operador I na Flextronics, em Sorocaba (SP). A rotina industrial me ensinou a seguir processos e observar detalhes. Depois, migrei para a área de tecnologia por meio de um processo interno e passei a atuar como QA Tester Jr.",
+    },
+    {
+      title: "O que faço",
+      text: "Na área de qualidade de software, trabalho com testes funcionais, de regressão e de confirmação de correções para verificar se as funcionalidades atendem ao esperado. Também aprofundo meus conhecimentos em automação de testes e uso minha experiência em desenvolvimento para analisar interfaces e APIs.",
+    },
+    {
+      title: "Como me desenvolvo",
+      text: "Curso Desenvolvimento de Software Multiplataforma na Fatec Votorantim. No Pet Joyful, projeto integrador desenvolvido ao longo de cinco semestres, participei da construção de uma solução web e mobile apoiada por uma API. Essa prática aproxima o que estudo da análise de qualidade e da entrega de software.",
+    },
   ],
   languages: ["Português nativo", "Inglês avançado"],
   skills: [
@@ -189,23 +199,144 @@ export const profile = {
       type: "Formação",
       title: "Tecnólogo em Desenvolvimento de Software Multiplataforma",
       place: "Fatec Votorantim",
-      description: "Formação superior em andamento.",
+      description: "Formação superior em andamento, com projetos práticos para web, API e mobile, incluindo o Pet Joyful.",
     },
     {
       period: "Atual",
       type: "Experiência",
       title: "QA Tester Jr",
       place: "FIT - Instituto de Tecnologia · Sorocaba, SP",
-      description: "Migração para testes de software por meio de processo interno.",
+      description: "Atuação em qualidade de software após uma migração interna para a área de tecnologia, com foco na validação de funcionalidades e na investigação de falhas.",
     },
     {
       period: "Anterior",
       type: "Experiência",
       title: "Operador I",
       place: "Flextronics · Sorocaba, SP",
-      description: "Experiência anterior na operação industrial.",
+      description: "Experiência em operação industrial, com rotina orientada por processos, atenção a detalhes e cumprimento de padrões de produção.",
     },
   ],
+  // Certificações informadas pelo titular a partir da seção "Licenças e certificados" do LinkedIn.
+  certifications: [
+    {
+      title: "Boas Práticas em Segurança da Informação e Cyber",
+      issuer: "Udemy",
+      issued: "out. de 2026",
+      credentialId: "UC-f6f10da1-973e-462b-9c8a-90118b8a80f",
+      group: "recent",
+    },
+    {
+      title: "Como Dominar a Qualidade do Software do Início ao Fim",
+      issuer: "Udemy",
+      issued: "ago. de 2026",
+      credentialUrl: "https://ude.my/UC-3bae35cf-744f-4a04-b9ef-6ebe1134af8e",
+      group: "recent",
+    },
+    {
+      title: "Fundamentos do SCRUM Agile | Rápido e Prático",
+      issuer: "Udemy",
+      issued: "jul. de 2026",
+      group: "recent",
+    },
+    {
+      title: "Design Patterns Básico",
+      issuer: "Centro Paula Souza",
+      issued: "fev. de 2026",
+      credentialId: "a2d4c7e2-a319-4afd-9589-a9d2d93b4444",
+      group: "recent",
+    },
+    {
+      title: "Front-End Básico",
+      issuer: "Centro Paula Souza",
+      issued: "mai. de 2025",
+      credentialId: "843f992d-f93a-4ad7-bd89-17ae700bb524",
+      group: "recent",
+    },
+    {
+      title: "Segurança cibernética",
+      issuer: "Senai São Paulo",
+      issued: "dez. de 2023",
+      group: "recent",
+    },
+    {
+      title: "Advanced English",
+      issuer: "Unoprime Capacitação Profissional",
+      issued: "out. de 2022",
+      expires: "out. de 2023",
+      group: "additional",
+    },
+    {
+      title: "Intermediate English",
+      issuer: "Unoprime Capacitação Profissional",
+      issued: "jul. de 2020",
+      expires: "dez. de 2021",
+      group: "additional",
+    },
+    {
+      title: "Auxiliar em Design de Web Sites",
+      issuer: "ETEC Prof. Elias Miguel Jr.",
+      issued: "fev. de 2020",
+      expires: "dez. de 2022",
+      group: "additional",
+    },
+    {
+      title: "Auxiliar Informática pra internet",
+      issuer: "ETEC Prof. Elias Miguel Jr.",
+      issued: "fev. de 2020",
+      expires: "dez. de 2022",
+      group: "additional",
+    },
+    {
+      title: "Técnico informática para a internet",
+      issuer: "ETEC Prof. Elias Miguel Jr.",
+      issued: "fev. de 2020",
+      expires: "dez. de 2022",
+      group: "additional",
+    },
+    {
+      title: "Consciência ambiental",
+      issuer: "Prefeitura Municipal de Votorantim",
+      issued: "mai. de 2019",
+      expires: "mai. de 2019",
+      group: "additional",
+    },
+    {
+      title: "Informática avançado",
+      issuer: "Unoprime Capacitação Profissional",
+      issued: "mai. de 2018",
+      expires: "dez. de 2021",
+      group: "additional",
+    },
+    {
+      title: "Operador de Computador",
+      issuer: "Unoprime Capacitação Profissional",
+      issued: "abr. de 2018",
+      expires: "dez. de 2021",
+      group: "additional",
+    },
+    {
+      title: "Basic English",
+      issuer: "Unoprime Capacitação Profissional",
+      issued: "abr. de 2018",
+      expires: "jun. de 2020",
+      group: "additional",
+    },
+    {
+      title: "Evolução Profissional",
+      issuer: "Unoprime Capacitação Profissional",
+      issued: "ago. de 2016",
+      expires: "set. de 2016",
+      group: "additional",
+    },
+  ] as Array<{
+    title: string;
+    issuer?: string;
+    issued?: string;
+    expires?: string;
+    credentialId?: string;
+    credentialUrl?: string;
+    group: "recent" | "additional";
+  }>,
   contact: {
     title: "Vamos conversar?",
     description:

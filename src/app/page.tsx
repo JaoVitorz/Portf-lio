@@ -10,7 +10,27 @@ function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   return <span className="arrow-icon" aria-hidden="true">{diagonal ? "↗" : "→"}</span>;
 }
 
+function CertificationItem({ certification }: { certification: (typeof profile.certifications)[number] }) {
+  return (
+    <li className="certification-item">
+      <div>
+        <h4>{certification.title}</h4>
+        <p>{certification.issuer || "Instituição não informada"}</p>
+        {certification.credentialId && <span className="certification-code">Credencial: {certification.credentialId}</span>}
+      </div>
+      <div className="certification-meta">
+        {certification.issued && <span>Emissão: {certification.issued}</span>}
+        {certification.expires && <span>Validade encerrada: {certification.expires}</span>}
+        {certification.credentialUrl && <a className="text-link" href={certification.credentialUrl} target="_blank" rel="noopener noreferrer">Ver credencial <Arrow diagonal /></a>}
+      </div>
+    </li>
+  );
+}
+
 export default function Home() {
+  const recentCertifications = profile.certifications.filter((certification) => certification.group === "recent");
+  const additionalCertifications = profile.certifications.filter((certification) => certification.group === "additional");
+
   return (
     <main id="conteudo" className="page-enter">
       <section className="hero container" aria-labelledby="hero-title">
@@ -20,7 +40,8 @@ export default function Home() {
           <p className="hero-role hero-line">{profile.role} <span className="role-slash">/</span> Desenvolvedor Full Stack</p>
           <p className="hero-position hero-line">{profile.positioning}</p>
           <div className="hero-actions hero-line">
-            <Link className="button button-primary" href="/#projetos">Ver projetos <Arrow /></Link>
+            <Link className="button button-primary" href="/#sobre">Ler perfil <Arrow /></Link>
+            <Link className="button button-secondary" href="/#projetos">Ver projetos <Arrow /></Link>
             <a className="button button-secondary" href={profile.links.github} target="_blank" rel="noopener noreferrer">GitHub <Arrow diagonal /></a>
             {profile.links.linkedIn ? (
               <a className="button button-secondary" href={profile.links.linkedIn} target="_blank" rel="noopener noreferrer">LinkedIn <Arrow diagonal /></a>
@@ -51,16 +72,16 @@ export default function Home() {
 
       <section className="section section-about" id="sobre" aria-labelledby="sobre-title">
         <div className="container">
-          <Reveal><SectionHeading number="01" eyebrow="PESSOA & PERCURSO" title="Do chão de fábrica à qualidade de software." id="sobre-title" /></Reveal>
+          <Reveal><SectionHeading number="01" eyebrow="QUEM SOU E O QUE FAÇO" title="Perfil profissional." description="Da operação industrial à qualidade de software, com formação e prática em desenvolvimento de aplicações." id="sobre-title" /></Reveal>
           <div className="about-grid">
             <Reveal className="about-aside" delay={80}>
-              <span className="mono-label">EM UMA FRASE</span>
+              <span className="mono-label">RESUMO PROFISSIONAL</span>
               <p>{profile.summary}</p>
               <span className="about-aside-line" />
               <div className="about-facts"><span>{profile.location}</span>{profile.languages.map((language) => <span key={language}>{language}</span>)}</div>
             </Reveal>
             <div className="about-text">
-              {profile.about.map((paragraph, index) => <Reveal key={paragraph} delay={index * 80}><p>{paragraph}</p></Reveal>)}
+              {profile.about.map((item, index) => <Reveal className="about-entry" key={item.title} delay={index * 80}><h3>{item.title}</h3><p>{item.text}</p></Reveal>)}
             </div>
           </div>
         </div>
@@ -118,8 +139,24 @@ export default function Home() {
 
       <section className="section section-timeline" id="trajetoria" aria-labelledby="trajetoria-title">
         <div className="container">
-          <Reveal><SectionHeading number="05" eyebrow="FORMAÇÃO & EXPERIÊNCIA" title="Um caminho em evolução." id="trajetoria-title" /></Reveal>
+          <Reveal><SectionHeading number="05" eyebrow="CURRÍCULO" title="Experiência e formação." description="Os principais passos da minha trajetória profissional e acadêmica." id="trajetoria-title" /></Reveal>
           <div className="timeline">{profile.timeline.map((entry, index) => <Reveal className="timeline-item" key={entry.title} delay={index * 70}><div className="timeline-marker" aria-hidden="true" /><span className="timeline-period">{entry.period}</span><div className="timeline-content"><span className="mono-label">{entry.type}</span><h3>{entry.title}</h3><p className="timeline-place">{entry.place}</p><p>{entry.description}</p></div></Reveal>)}</div>
+          {profile.certifications.length > 0 && (
+            <div className="certifications" aria-labelledby="certificacoes-title">
+              <div className="certifications-heading">
+                <h3 id="certificacoes-title">Licenças e certificações</h3>
+                {profile.links.linkedIn && <a className="text-link" href={profile.links.linkedIn} target="_blank" rel="noopener noreferrer">Ver perfil no LinkedIn <Arrow diagonal /></a>}
+              </div>
+              <p className="certifications-intro">Cursos e certificações relacionados à minha atuação em qualidade, desenvolvimento e segurança da informação.</p>
+              <ul className="certifications-list">{recentCertifications.map((certification) => <CertificationItem key={certification.title} certification={certification} />)}</ul>
+              {additionalCertifications.length > 0 && (
+                <details className="certifications-archive">
+                  <summary>Outras certificações e cursos <span>{additionalCertifications.length} itens <span aria-hidden="true">+</span></span></summary>
+                  <ul className="certifications-list">{additionalCertifications.map((certification) => <CertificationItem key={certification.title} certification={certification} />)}</ul>
+                </details>
+              )}
+            </div>
+          )}
         </div>
       </section>
 

@@ -25,10 +25,11 @@ O build gera a pasta `out/`, pronta para hospedagem estática. A rota do estudo 
 Todas as informações pessoais, textos de apresentação, projetos, skills, trajetória, links e conteúdo do estudo de caso ficam em [`src/data/profile.ts`](src/data/profile.ts). Edite esse arquivo e salve; o servidor de desenvolvimento atualiza a página automaticamente.
 
 - **Nome:** altere `lastName` no início do arquivo. `name` e o título do site são atualizados a partir dele.
-- **Links:** preencha `links.linkedIn`, `links.email` e `resume`. Enquanto forem `null`, o site mostra `[PREENCHER]` e evita links quebrados. `petJoyful.webDemo` já aponta para a versão publicada; atualize se a URL mudar.
+- **Perfil profissional:** edite `positioning` (introdução), `summary` (resumo), os títulos e textos de `about` (quem sou, o que faço e formação) e `timeline` (experiência e formação). Revise cargos e atividades para que correspondam ao seu currículo.
+- **Links:** o LinkedIn informado está em `links.linkedIn`; preencha `links.email` e `resume`. Enquanto forem `null`, o site mostra indicadores sem links ativos. `petJoyful.webDemo` já aponta para a versão publicada; atualize se a URL mudar.
+- **Certificações:** os itens informados a partir do LinkedIn estão em `certifications`. Edite título, instituição, emissão, validade, código e link da credencial nesse campo. Os cursos mais recentes aparecem primeiro; os demais ficam em “Outras certificações e cursos”. Validades encerradas são indicadas no site.
 - **Foto e currículo:** a foto atual está em `public/foto-terno.png` e é definida por `photo`. Para trocá-la, coloque outro arquivo em `public/` e atualize esse caminho. Ela aparece com suas cores originais e cantos arredondados. Para o currículo, coloque o PDF em `public/` e informe um caminho como `"/curriculo.pdf"` em `resume`.
 - **Capturas de tela:** as telas Home e Perfil da versão web, e Início e Perfil do aplicativo mobile, estão em `public/projects/`. O destaque web e o card mobile usam essas imagens em `src/components/ProjectVisual.tsx`; a galeria do estudo de caso usa os caminhos em `petJoyful.screenshots[].src`. Substitua os arquivos e atualize os caminhos se as telas mudarem.
-- **Empresa de QA:** substitua o texto `"[PREENCHER empresa de QA]"` em `timeline`.
 - **Áreas de atuação:** edite `skillGroups` para alterar os cinco grupos, descrições e quatro ferramentas exibidas por grupo. Os SVGs ficam em `public/brand-icons/`; mantenha o caminho `icon` correspondente. Os indicadores permitem escolher um grupo e a rotação de 4 segundos pode ser pausada. A troca sobrepõe brevemente o grupo anterior e o próximo, como no protótipo do Figma. Em `skills` permanece a lista completa, aberta pelo controle “Todas as competências”. Com movimento reduzido, a troca usa apenas fades curtos.
 - **Textura de fundo:** substitua `public/fabric-of-squares.png` para trocar o padrão. Ajuste `--texture-opacity` em `src/app/globals.css` para controlar a intensidade nos temas claro e escuro.
 
@@ -63,11 +64,9 @@ As instruções seguem a [documentação de exportação estática do Next.js](h
 
 | Item | Onde preencher |
 | --- | --- |
-| Sobrenome completo | `lastName` em `src/data/profile.ts` |
-| URL do LinkedIn | `links.linkedIn` |
+| Lista de certificações do LinkedIn | `certifications` em `src/data/profile.ts` |
 | E-mail de contato | `links.email` |
 | Currículo PDF | Arquivo em `public/` + `resume` |
-| Nome da empresa do cargo QA Tester Jr | `timeline` |
 | URL pública do portfólio | `NEXT_PUBLIC_SITE_URL` no ambiente de build |
 
 O destaque do Pet Joyful, o card mobile e as quatro imagens do estudo de caso usam capturas reais. O Study Organizer usa uma ilustração em CSS, identificada como tal no site.
