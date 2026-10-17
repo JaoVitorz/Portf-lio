@@ -1,22 +1,10 @@
 import { BrowserMockup } from "./BrowserMockup";
 
-export function ProjectVisual({ variant = "pet" }: { variant?: "pet" | "study" | "mobile" }) {
-  if (variant === "study") {
-    return (
-      <div className="project-visual project-visual-study" aria-hidden="true">
-        <div className="visual-topline"><span>STUDY ORGANIZER</span><span>PY / 02</span></div>
-        <div className="study-window">
-          <div className="window-bar"><i /><i /><i /><span>organizer / estudo</span></div>
-          <div className="study-interface"><span className="study-sidebar" /><div className="study-lines"><b /><b /><b /><b /></div></div>
-        </div>
-        <div className="visual-bottomline">CLI → WEB → DESKTOP</div>
-      </div>
-    );
-  }
+export function ProjectVisual({ variant = "pet" }: { variant?: "pet" | "mobile" }) {
   if (variant === "mobile") {
     return (
       <div className="project-visual project-visual-mobile">
-        <div className="visual-topline"><span>PET JOYFUL / MOBILE</span><span>03</span></div>
+        <div className="visual-topline"><span>PET JOYFUL / MOBILE</span><span>02</span></div>
         <div className="mobile-screens">
           <div className="mobile-screen">
             {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -69,6 +69,6 @@ As instruções seguem a [documentação de exportação estática do Next.js](h
 | Currículo PDF | Arquivo em `public/` + `resume` |
 | URL pública do portfólio | `NEXT_PUBLIC_SITE_URL` no ambiente de build |
 
-O destaque do Pet Joyful, o card mobile e as quatro imagens do estudo de caso usam capturas reais. O Study Organizer usa uma ilustração em CSS, identificada como tal no site.
+O destaque do Pet Joyful, o card mobile e as quatro imagens do estudo de caso usam capturas reais.
 
 Os ícones do carrossel vieram da coleção [Simple Icons](https://simpleicons.org/) e usam suas cores de marca; as marcas pertencem aos respectivos titulares.

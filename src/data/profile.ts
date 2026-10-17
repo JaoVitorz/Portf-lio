@@ -160,15 +160,6 @@ export const profile = {
   projects: [
     {
       number: "02",
-      title: "Study Organizer",
-      category: "Python / Produto",
-      description:
-        "Aplicação em Python que evoluiu de uma interface de linha de comando para uma aplicação web com Flask e, depois, para uma janela nativa com pywebview.",
-      tags: ["Python", "Flask", "pywebview"],
-      href: null as string | null,
-    },
-    {
-      number: "03",
       title: "Pet Joyful Mobile",
       category: "Mobile / React Native",
       description:

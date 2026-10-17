@@ -110,17 +110,17 @@ export default function Home() {
           <Reveal className="featured-project">
             <div className="featured-content">
               <span className="mono-label">{profile.featured.eyebrow}</span>
-              <div><span className="featured-number">01 / 03</span><h3>{profile.featured.title}<span className="title-period">.</span></h3><p>{profile.featured.description}</p></div>
+              <div><span className="featured-number">01 / 02</span><h3>{profile.featured.title}<span className="title-period">.</span></h3><p>{profile.featured.description}</p></div>
               <div className="featured-bottom"><div className="tag-list">{profile.featured.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><div className="featured-links"><Link className="text-link" href="/projetos/pet-joyful/">Explorar estudo de caso <Arrow /></Link><a className="text-link" href={profile.petJoyful.webDemo} target="_blank" rel="noopener noreferrer">Abrir projeto publicado <Arrow /></a></div></div>
             </div>
             <ProjectVisual />
           </Reveal>
-          <p className="visual-disclaimer">Capturas reais do Pet Joyful Web e Mobile. O Study Organizer usa uma ilustração.</p>
+          <p className="visual-disclaimer">Capturas reais do Pet Joyful Web e Mobile.</p>
           <div className="other-projects">
             {profile.projects.map((project, index) => (
               <Reveal key={project.title} className="project-card" delay={index * 80}>
-                <ProjectVisual variant={index === 0 ? "study" : "mobile"} />
-                <div className="project-card-content"><div className="project-card-meta"><span>{project.number} / 03</span><span>{project.category}</span></div><h3>{project.title}</h3><p>{project.description}</p><div className="tag-list">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>{project.href && <Link className="text-link" href={project.href}>Ler no estudo de caso <Arrow /></Link>}</div>
+                <ProjectVisual variant="mobile" />
+                <div className="project-card-content"><div className="project-card-meta"><span>{project.number} / 02</span><span>{project.category}</span></div><h3>{project.title}</h3><p>{project.description}</p><div className="tag-list">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>{project.href && <Link className="text-link" href={project.href}>Ler no estudo de caso <Arrow /></Link>}</div>
               </Reveal>
             ))}
           </div>
